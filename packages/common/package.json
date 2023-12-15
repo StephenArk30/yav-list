@@ -1,0 +1,27 @@
+{
+  "name": "yav-list-common",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "StephenArk30/yav-list-scroll",
+    "directory": "packages/common"
+  },
+  "homepage": "https://github.com/StephenArk30/yav-list#readme",
+  "keywords": [],
+  "main": "dist/index.js",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "cross-env NODE_ENV=production && tsc",
+    "prepublish": "yarn clean",
+    "publish": "yarn build"
+  },
+  "directories": {
+    "base": "base",
+    "build": "build"
+  }
+}

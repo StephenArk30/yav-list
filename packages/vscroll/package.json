@@ -1,0 +1,35 @@
+{
+  "name": "yav-list-scroll",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "StephenArk30/yav-list-scroll",
+    "directory": "packages/vscroll"
+  },
+  "homepage": "https://github.com/StephenArk30/yav-list#readme",
+  "keywords": [],
+  "main": "dist/yav-list-scroll.cjs",
+  "module": "dist/yav-list-scroll.mjs",
+  "directories": {
+    "dist": "dist",
+    "src": "src"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "cross-env NODE_ENV=production && rollup -c rollup.config.mjs",
+    "dev": "yarn clean && cross-env NODE_ENV=development && rollup -w -c rollup.dev.config.mjs",
+    "prepublish": "yarn clean",
+    "publish": "yarn build"
+  },
+  "dependencies": {
+    "yav-list-common": "workspace:*"
+  }
+}

@@ -1,0 +1,47 @@
+/**
+ * This is the main configuration file for Rush.
+ * For full documentation, please see https://rushjs.io
+ */
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+  "rushVersion": "5.112.1",
+  "pnpmVersion": "7.33.5",
+
+  "nodeSupportedVersionRange": ">=14.15.0 <15.0.0 || >=16.13.0 <17.0.0 || >=18.15.0 <19.0.0",
+
+  "gitPolicy": {
+  },
+
+  "repository": {
+  },
+
+  "eventHooks": {
+    "preRushInstall": [
+      // "common/scripts/pre-rush-install.js"
+    ],
+
+    "postRushInstall": [],
+
+    "preRushBuild": [],
+
+    "postRushBuild": [],
+
+    "preRushx": [],
+
+    "postRushx": []
+  },
+
+  "variants": [
+  ],
+
+  "projects": [
+    {
+      "packageName": "yav-list-common",
+      "projectFolder": "packages/common"
+    },
+    {
+      "packageName": "yav-list-scroll",
+      "projectFolder": "packages/vscroll"
+    }
+  ]
+}
