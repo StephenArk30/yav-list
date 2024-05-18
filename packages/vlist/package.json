@@ -9,8 +9,9 @@
   },
   "homepage": "https://github.com/StephenArk30/yav-list#readme",
   "keywords": [],
-  "main": "dist/yav-list.cjs",
-  "module": "dist/yav-list.mjs",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/src/index.d.ts",
   "directories": {
     "dist": "dist",
     "src": "src"

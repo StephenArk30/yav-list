@@ -1,0 +1,33 @@
+lockfileVersion: 5.4
+
+importers:
+
+  .:
+    specifiers: {}
+
+  ../../packages/common:
+    specifiers: {}
+
+  ../../packages/vlist:
+    specifiers:
+      '@faker-js/faker': ^8.4.1
+      yav-list-common: workspace:*
+      yav-list-scroll: workspace:*
+    dependencies:
+      yav-list-common: link:../common
+      yav-list-scroll: link:../vscroll
+    devDependencies:
+      '@faker-js/faker': 8.4.1
+
+  ../../packages/vscroll:
+    specifiers:
+      yav-list-common: workspace:*
+    dependencies:
+      yav-list-common: link:../common
+
+packages:
+
+  /@faker-js/faker/8.4.1:
+    resolution: {integrity: sha512-XQ3cU+Q8Uqmrbf2e0cIC/QN43sTBSC8KF12u29Mb47tWrt2hAgBXSgpZMj4Ao8Uk0iJcU99QsOCaIL8934obCg==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
+    dev: true

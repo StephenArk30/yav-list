@@ -42,6 +42,10 @@
     {
       "packageName": "yav-list-scroll",
       "projectFolder": "packages/vscroll"
+    },
+    {
+      "packageName": "yav-list",
+      "projectFolder": "packages/vlist"
     }
   ]
 }
