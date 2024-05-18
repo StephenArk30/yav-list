@@ -1,3 +1,4 @@
 base/**/*.js
-base/**/*.d.ts
-base/**/*.js.map
+utils/**/*.js
+**/*.d.ts
+**/*.js.map
