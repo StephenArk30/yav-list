@@ -7,3 +7,5 @@ export function createVScroll(height: string) {
   container.appendChild(contentWrapper);
   return new VScroll(container, contentWrapper);
 }
+
+export { VScroll };

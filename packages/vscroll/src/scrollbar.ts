@@ -13,7 +13,6 @@ export interface IScrollbarOption {
 
 export default class Scrollbar extends Renderable implements IDisposable {
   private innerScroller: Scroller;
-  private disposer: (() => void)[] = [];
 
   constructor(
     private readonly container: HTMLElement,
@@ -36,7 +35,6 @@ export default class Scrollbar extends Renderable implements IDisposable {
   }
 
   public dispose() {
-    this.disposer.forEach((d) => d());
     this.scroller.dispose();
   }
 

@@ -12,9 +12,9 @@ export default class VScroll extends Disposable {
   protected maxScrollY: number;
 
   constructor(
-    private readonly innerContainer: HTMLElement,
-    private readonly innerContentWrapper: HTMLElement,
-    private readonly options: IVScrollOption = {},
+    protected readonly innerContainer: HTMLElement,
+    protected readonly innerContentWrapper: HTMLElement,
+    protected readonly scrollOption: IVScrollOption = {},
   ) {
     super();
     if (!this.container.contains(this.contentWrapper)) {
@@ -22,6 +22,10 @@ export default class VScroll extends Disposable {
       console.warn('`container.appendChild(contentWrapper)` will be executed');
       this.container.appendChild(this.contentWrapper);
     }
+    this.init();
+  }
+
+  protected init() {
     this.initStyle();
     this.addScroller();
     this.update();
@@ -31,7 +35,7 @@ export default class VScroll extends Disposable {
   public get container() { return this.innerContainer; }
   public get contentWrapper() { return this.innerContentWrapper; }
 
-  private get scroller() {
+  protected get scroller() {
     return this.scrollbar.scroller;
   }
 

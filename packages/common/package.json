@@ -17,8 +17,8 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "cross-env NODE_ENV=production && tsc",
-    "prepublish": "yarn clean",
-    "publish": "yarn build"
+    "prepublish": "pnpm clean",
+    "publish": "pnpm build"
   },
   "directories": {
     "base": "base",
