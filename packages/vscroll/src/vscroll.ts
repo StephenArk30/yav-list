@@ -47,7 +47,7 @@ export default class VScroll extends Disposable {
   protected move(el: HTMLElement, { x = 0, y = 0 }) {
     const { transform } = el.ownerDocument.defaultView.getComputedStyle(el);
     if (transform === 'none') {
-      el.style.transform = `translate(0px, ${inRange(-y, this.maxScrollY, 0)}px)`;
+      el.style.transform = `translate(0px, ${-inRange(-y, this.maxScrollY, 0)}px)`;
       return;
     }
 
