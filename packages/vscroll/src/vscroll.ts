@@ -23,9 +23,9 @@ export default class VScroll extends Disposable {
       this.container.appendChild(this.contentWrapper);
     }
     this.initStyle();
-    this.disposer.push(this.addEventListeners());
     this.addScroller();
     this.update();
+    this.disposer.push(this.addEventListeners());
   }
 
   public get container() { return this.innerContainer; }
@@ -48,17 +48,25 @@ export default class VScroll extends Disposable {
     this.contentWrapper.style.width = '100%';
   }
 
-  protected onWheel = throttle((e: WheelEvent) => {
-    const { deltaY } = e;
-    move(this.contentWrapper, { y: -deltaY }, {
+  protected scroll = ({
+    x = 0,
+    y = 0,
+  }) => {
+    move(this.contentWrapper, { y: -y }, {
       minY: -this.maxScrollY,
       maxY: 0,
     });
+  };
+
+  protected onWheel = throttle((e: WheelEvent) => {
+    const { deltaY } = e;
+    this.scroll({ y: deltaY });
     this.scroller.onWheel(deltaY);
   }, 10);
 
   protected addEventListeners() {
     this.contentWrapper.addEventListener('wheel', this.onWheel);
+    this.scroller.onScroll((e) => this.scroll({ y: e.deltaY }));
     return () => {
       this.contentWrapper.removeEventListener('wheel', this.onWheel);
     };

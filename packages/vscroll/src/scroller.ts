@@ -1,6 +1,12 @@
 import type { IDisposable } from 'yav-list-common/base/disposable';
+import { throttle } from 'lodash-es';
 import Renderable from 'yav-list-common/base/renderable';
 import move from './move';
+
+export type IScrollerScrollEvent = {
+  deltaY: number;
+  scrollerDeltaY: number;
+}
 
 export interface IScrollerOption {
   minHeight: number;
@@ -10,17 +16,13 @@ const DEFAULT_SCROLLER_OPTIONS: IScrollerOption = {
   minHeight: 20,
 };
 
-interface IDnD {
-  startY: number;
-  deltaY: number;
-}
-
 export default class Scroller extends Renderable implements IDisposable {
   private options: IScrollerOption;
   private disposer: (() => void)[] = [];
-  private dnd: IDnD;
+  private scrollHandlers: ((event: IScrollerScrollEvent) => void)[] = [];
   private scrollStep = 0;
   private maxScrollY = 0;
+  private lastMouseY = 0;
 
   constructor(
     private readonly parent: Renderable,
@@ -61,6 +63,10 @@ export default class Scroller extends Renderable implements IDisposable {
     move(this.el, { y: dy * this.scrollStep }, { maxY: this.maxScrollY });
   }
 
+  public onScroll(handler: (event: IScrollerScrollEvent) => void) {
+    this.scrollHandlers.push(handler);
+  }
+
   protected init() {
     this.el = this.parent.$el.ownerDocument.createElement('div');
     this.parent.$el.appendChild(this.el);
@@ -80,23 +86,35 @@ export default class Scroller extends Renderable implements IDisposable {
     return () => {
       this.$el.removeEventListener('mousedown', this.onMouseDown);
       this.ownerDocument.removeEventListener('mouseup', this.onMouseUp);
+      this.ownerDocument.removeEventListener('mousemove', this.onMouseMove);
     };
   }
 
   protected onMouseDown = (e: MouseEvent) => {
     this.$el.style.opacity = '0.6';
-    this.dnd = {
-      startY: e.clientY,
-      deltaY: 0,
-    };
+    this.lastMouseY = e.clientY;
+    this.ownerDocument.addEventListener('mousemove', this.onMouseMove);
   };
 
-  protected onMouseUp = (e: MouseEvent) => {
+  protected onMouseUp = () => {
     this.$el.style.opacity = '0.4';
+    this.ownerDocument.removeEventListener('mousemove', this.onMouseMove);
   };
 
   protected onMouseMove = (e: MouseEvent) => {
     const { clientY } = e;
-    this.dnd.deltaY = clientY - this.dnd.startY;
+    this.scroll({ y: clientY - this.lastMouseY });
+    this.lastMouseY = clientY;
   };
+
+  protected scroll = throttle(({
+    x = 0,
+    y = 0,
+  }) => {
+    move(this.$el, { x, y }, { maxY: this.maxScrollY });
+    this.scrollHandlers.forEach((handler) => handler({
+      deltaY: y / this.scrollStep,
+      scrollerDeltaY: y,
+    }));
+  }, 10);
 }
