@@ -13,6 +13,7 @@
   },
 
   "repository": {
+    "url": "https://github.com/StephenArk30/yav-list"
   },
 
   "eventHooks": {
@@ -41,11 +42,13 @@
     },
     {
       "packageName": "yav-list-scroll",
-      "projectFolder": "packages/vscroll"
+      "projectFolder": "packages/vscroll",
+      "shouldPublish": true
     },
     {
       "packageName": "yav-list",
-      "projectFolder": "packages/vlist"
+      "projectFolder": "packages/vlist",
+      "shouldPublish": true
     }
   ]
 }
