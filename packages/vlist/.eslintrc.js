@@ -4,7 +4,7 @@ module.exports = {
   rules: {
     'import/no-extraneous-dependencies': ['error', {
       packageDir: [path.resolve(__dirname), path.resolve(__dirname, '../..')],
-      devDependencies: [path.resolve(__dirname, 'demo')],
+      devDependencies: ['**/demo/**/*'],
     }],
   },
 };
