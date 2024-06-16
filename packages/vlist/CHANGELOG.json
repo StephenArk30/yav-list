@@ -1,0 +1,22 @@
+{
+  "name": "yav-list",
+  "entries": [
+    {
+      "version": "1.0.0",
+      "tag": "yav-list_v1.0.0",
+      "date": "Sun, 16 Jun 2024 15:46:28 GMT",
+      "comments": {
+        "major": [
+          {
+            "comment": "publish"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"yav-list-scroll\" to `1.0.0`"
+          }
+        ]
+      }
+    }
+  ]
+}
