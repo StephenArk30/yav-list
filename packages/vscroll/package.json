@@ -25,10 +25,10 @@
   ],
   "scripts": {
     "clean": "rimraf dist",
-    "build": "cross-env NODE_ENV=production && pnpm clean && rollup -c rollup.config.mjs",
-    "dev": "pnpm clean && cross-env NODE_ENV=development && rollup -w -c rollup.dev.config.mjs",
-    "prepublish": "pnpm clean",
-    "publish": "pnpm build"
+    "build": "pnpm clean && cross-env NODE_ENV=production rollup -c rollup.config.mjs",
+    "dev": "pnpm clean && cross-env NODE_ENV=development rollup -w -c rollup.dev.config.mjs",
+    "prepublishOnly": "pnpm clean",
+    "prepack": "pnpm build"
   },
   "dependencies": {
     "yav-list-common": "workspace:*"
